@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Web version of my portfolio with skills, interests, and goals, built with React.",
   "main": "src/index.tsx",
+  "homepage": "https://andreanxtech.github.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -24,8 +25,7 @@
     "website",
     "react"
   ],
-  "author": "Your Name",
-  "license": "MIT",
+  "author": "AndreansxTech",
   "browserslist": {
     "production": [
       ">0.2%",
