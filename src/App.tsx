@@ -5,8 +5,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
-import { IconBase } from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
+import { FaArrowUp } from 'react-icons/fa';
 import './styles/index.css';
 
 const App: React.FC = () => {
@@ -83,7 +82,7 @@ const App: React.FC = () => {
                 role="button"
                 tabIndex={0}
             >
-                <IconBase><FaIcons.FaArrowUp /></IconBase>
+                {React.createElement(FaArrowUp as React.ElementType)}
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { IconBase } from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,7 +58,7 @@ const Header: React.FC = () => {
                             <motion.li variants={itemVariants}>
                                 <a href="https://github.com/AndreansxTech" target="_blank" rel="noopener noreferrer" 
                                    style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                    <IconBase><FaIcons.FaGithub /></IconBase>
+                                    {React.createElement(FaGithub as React.ElementType)}
                                 </a>
                             </motion.li>
                         </ul>

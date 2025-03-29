@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { IconBase } from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
+import { FaTelegramPlane, FaRedditAlien, FaGithub } from 'react-icons/fa';
 
 const Contact: React.FC = () => {
     return (
@@ -53,7 +52,7 @@ const Contact: React.FC = () => {
                                 gap: '0.5rem'
                             }}
                         >
-                            <IconBase size={20}><FaIcons.FaTelegramPlane /></IconBase>
+                            {React.createElement(FaTelegramPlane as React.ElementType, { size: 20 })}
                             <span>Telegram</span>
                         </a>
                         <a 
@@ -68,7 +67,7 @@ const Contact: React.FC = () => {
                                 gap: '0.5rem'
                             }}
                         >
-                            <IconBase size={20}><FaIcons.FaRedditAlien /></IconBase>
+                            {React.createElement(FaRedditAlien as React.ElementType, { size: 20 })}
                             <span>Reddit</span>
                         </a>
                         <a 
@@ -83,7 +82,7 @@ const Contact: React.FC = () => {
                                 gap: '0.5rem'
                             }}
                         >
-                            <IconBase size={20}><FaIcons.FaGithub /></IconBase>
+                            {React.createElement(FaGithub as React.ElementType, { size: 20 })}
                             <span>GitHub</span>
                         </a>
                     </motion.div>

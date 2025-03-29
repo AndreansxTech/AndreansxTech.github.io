@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { IconBase } from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
+import { FaServer, FaNetworkWired, FaShieldAlt } from 'react-icons/fa';
 
 const About: React.FC = () => {
     const skills = [
@@ -46,15 +45,15 @@ const About: React.FC = () => {
                         
                         <div className="tech-icons" style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem' }}>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'var(--accent)' }}>
-                                <IconBase size={30}><FaIcons.FaNetworkWired /></IconBase>
+                                {React.createElement(FaNetworkWired as React.ElementType, { size: 30 })}
                                 <span style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Networking</span>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'var(--accent)' }}>
-                                <IconBase size={30}><FaIcons.FaServer /></IconBase>
+                                {React.createElement(FaServer as React.ElementType, { size: 30 })}
                                 <span style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Infrastructure</span>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'var(--accent)' }}>
-                                <IconBase size={30}><FaIcons.FaShieldAlt /></IconBase>
+                                {React.createElement(FaShieldAlt as React.ElementType, { size: 30 })}
                                 <span style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Security</span>
                             </div>
                         </div>

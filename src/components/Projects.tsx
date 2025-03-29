@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { IconBase } from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 
 const Projects: React.FC = () => {
     const projectList = [
@@ -52,17 +51,17 @@ const Projects: React.FC = () => {
                         >
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                                 <div style={{ color: 'var(--accent)', fontSize: '1.5rem' }}>
-                                    <IconBase><FaIcons.FaFolder /></IconBase>
+                                    {React.createElement(FaFolder as React.ElementType)}
                                 </div>
                                 <div className="project-links">
                                     {project.githubLink && (
                                         <a href={project.githubLink} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
-                                            <IconBase><FaIcons.FaGithub /></IconBase>
+                                            {React.createElement(FaGithub as React.ElementType)}
                                         </a>
                                     )}
                                     {project.liveLink && (
                                         <a href={project.liveLink} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
-                                            <IconBase><FaIcons.FaExternalLinkAlt /></IconBase>
+                                            {React.createElement(FaExternalLinkAlt as React.ElementType)}
                                         </a>
                                     )}
                                 </div>

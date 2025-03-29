@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { IconBase } from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
+import { FaHeart, FaGithub, FaRedditAlien, FaTelegramPlane } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
     return (
@@ -15,7 +14,7 @@ const Footer: React.FC = () => {
                         whileHover={{ y: -5, color: 'var(--accent)' }}
                         transition={{ duration: 0.2 }}
                     >
-                        <IconBase size={22}><FaIcons.FaGithub /></IconBase>
+                        {React.createElement(FaGithub as React.ElementType, { size: 22 })}
                     </motion.a>
                     <motion.a 
                         href="https://t.me/Andrtexh" 
@@ -24,7 +23,7 @@ const Footer: React.FC = () => {
                         whileHover={{ y: -5, color: 'var(--accent)' }}
                         transition={{ duration: 0.2 }}
                     >
-                        <IconBase size={22}><FaIcons.FaTelegramPlane /></IconBase>
+                        {React.createElement(FaTelegramPlane as React.ElementType, { size: 22 })}
                     </motion.a>
                     <motion.a 
                         href="https://www.reddit.com/user/Acensxandrea/" 
@@ -33,7 +32,7 @@ const Footer: React.FC = () => {
                         whileHover={{ y: -5, color: 'var(--accent)' }}
                         transition={{ duration: 0.2 }}
                     >
-                        <IconBase size={22}><FaIcons.FaRedditAlien /></IconBase>
+                        {React.createElement(FaRedditAlien as React.ElementType, { size: 22 })}
                     </motion.a>
                 </div>
                 
@@ -45,7 +44,7 @@ const Footer: React.FC = () => {
                 >
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                         <span>Zaprojektowane i zbudowane przez AndreansxTech</span> 
-                        <IconBase style={{ color: 'var(--accent)', fontSize: '0.7rem' }}><FaIcons.FaHeart /></IconBase>
+                        {React.createElement(FaHeart as React.ElementType, { style: { color: 'var(--accent)', fontSize: '0.7rem' } })}
                     </p>
                 </motion.div>
                 
