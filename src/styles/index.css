@@ -612,3 +612,62 @@ button:focus:not(:focus-visible) {
   color: var(--text-secondary);
   margin-bottom: 0;
 }
+
+/* Technologies Section - Updated icon grid */
+.tech-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.tech-icon-card {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tech-icon-wrapper {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-name {
+  font-size: 0.7rem;
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  font-family: var(--font-primary);
+}
+
+/* Media query for tech icons grid */
+@media (max-width: 768px) {
+  .tech-icons-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 0.6rem;
+  }
+  
+  .tech-icon-card {
+    padding: 0.8rem 0.5rem;
+  }
+  
+  .tech-name {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-icons-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 0.5rem;
+  }
+}
