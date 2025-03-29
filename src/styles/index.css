@@ -551,3 +551,64 @@ button:focus:not(:focus-visible) {
   opacity: 1;
   background-color: rgba(102, 217, 239, 0.1);
 }
+
+/* Technologies Section */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.tech-card {
+  background-color: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 2px solid var(--highlight-secondary);
+}
+
+.tech-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.tech-icon {
+  color: var(--highlight-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: rgba(174, 129, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  transition: all 0.3s ease;
+}
+
+.tech-card:hover .tech-icon {
+  transform: translateY(-5px);
+  color: var(--accent);
+  background-color: rgba(102, 217, 239, 0.1);
+}
+
+.tech-card h3 {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+.tech-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
