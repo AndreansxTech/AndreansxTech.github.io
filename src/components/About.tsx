@@ -4,12 +4,12 @@ import { FaServer, FaNetworkWired, FaShieldAlt } from 'react-icons/fa';
 
 const About: React.FC = () => {
     const skills = [
-        "Networking",
-        "Systems Administration",
-        "Data Center Infrastructure",
-        "MikroTik",
-        "Homelab Management",
-        "CompTIA Network+"
+        "Network Routing",
+        "Switching",
+        "MikroTik RouterOS",
+        "VLAN & Trunking",
+        "Brocade CLI",
+        "Network Monitoring"
     ];
     
     return (
@@ -21,7 +21,7 @@ const About: React.FC = () => {
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true, amount: 0.2 }}
                 >
-                    <h2 className="fade-up">O mnie</h2>
+                    <h2 className="fade-up">About Me</h2>
                 </motion.div>
                 
                 <div className="about-content">
@@ -33,14 +33,14 @@ const About: React.FC = () => {
                         className="fade-up"
                     >
                         <p>
-                            Jestem uczniem szkoły średniej z silnym zainteresowaniem sieciami komputerowymi, 
-                            administracją systemów i infrastrukturą centrum danych. Aktualnie rozwijam swoje 
-                            umiejętności poprzez praktyczne doświadczenie z fizycznym sprzętem w moim środowisku 
-                            homelab oraz oglądanie kursów dotyczących sieci.
+                            I'm Andreansx, a high school student with a strong passion for networking technologies. 
+                            My primary interest lies in gaining a deep understanding of network routing, switching, 
+                            and scalable infrastructures—particularly those found in ISP and data center contexts.
                         </p>
                         <p>
-                            Aktywnie uczę się podstawowych koncepcji objętych certyfikatem CompTIA Network+ 
-                            w ramach szerszego zapoznania się z technologiami IT i sieciowymi.
+                            My homelab is my primary classroom: it's not a static setup or hobby, but rather 
+                            a dynamic environment where I rigorously test theories, deliberately break configurations, 
+                            and rebuild networks to gain a solid understanding of both fundamental and advanced networking concepts.
                         </p>
                         
                         <div className="tech-icons" style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem' }}>
@@ -66,15 +66,15 @@ const About: React.FC = () => {
                         viewport={{ once: true, amount: 0.2 }}
                         className="fade-up"
                     >
-                        <h3>Cele zawodowe</h3>
+                        <h3>Career Aspirations</h3>
                         <p>
-                            Moim długoterminowym celem jest praca zawodowa w dziedzinie inżynierii sieciowej. 
-                            Szczególnie interesuje mnie routing, przełączanie i skalowalna infrastruktura sieciowa. 
-                            Aby przygotować się do tej ścieżki, skupiam się na budowaniu praktycznego doświadczenia 
-                            i pogłębianiu wiedzy teoretycznej.
+                            I aim to build a career in professional networking, particularly interested in:
+                            ISP backbone infrastructure, advanced routing solutions (OSPF, BGP, MPLS),
+                            data center switching, redundancy, load balancing, and scalable designs.
+                            My philosophy is simple: depth and understanding matter more than superficial familiarity.
                         </p>
 
-                        <h3>Umiejętności</h3>
+                        <h3>Skills</h3>
                         <div className="skills-container">
                             {skills.map((skill, index) => (
                                 <motion.div 

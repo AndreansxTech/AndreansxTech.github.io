@@ -60,12 +60,12 @@ const App: React.FC = () => {
             <main>
                 <section id="hero">
                     <div className="container">
-                        <p className="intro fade-up">Cześć, nazywam się</p>
-                        <h1 className="fade-up">AndreansxTech</h1>
+                        <p className="intro fade-up">Hi, my name is</p>
+                        <h1 className="fade-up">Andreansx</h1>
                         <p className="fade-up">Aspiring Network Engineer</p>
                         <p className="description fade-up">
-                            Pasjonat sieci komputerowych, specjalizujący się w infrastrukturze sieciowej,
-                            routingu i środowiskach centrów danych.
+                            Passionately pursuing deep technical expertise in network infrastructure, 
+                            routing, and data center environments.
                         </p>
                     </div>
                 </section>

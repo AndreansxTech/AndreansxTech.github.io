@@ -13,8 +13,8 @@ const Contact: React.FC = () => {
                     viewport={{ once: true, amount: 0.2 }}
                     style={{ textAlign: 'center' }}
                 >
-                    <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>04. Co dalej?</p>
-                    <h2 className="fade-up">Skontaktuj się ze mną</h2>
+                    <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>04. What's Next?</p>
+                    <h2 className="fade-up">Connect with Me</h2>
                     
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -23,8 +23,9 @@ const Contact: React.FC = () => {
                         viewport={{ once: true }}
                         style={{ maxWidth: '600px', margin: '0 auto 3rem auto' }}
                     >
-                        Obecnie skupiam się na pogłębianiu wiedzy o sieciach komputerowych i infrastrukturze IT.
-                        Jeśli chcesz porozmawiać o sieciach, projektach lub współpracy, jestem otwarty na kontakt!
+                        Feel free to reach out if you share similar interests or want to discuss networking, 
+                        certifications, or infrastructure topics. I'm always open to connecting with fellow 
+                        enthusiasts in the field.
                     </motion.p>
                     
                     <motion.div 
@@ -100,9 +101,9 @@ const Contact: React.FC = () => {
                             marginTop: '2rem',
                             padding: '1rem 2.5rem'
                         }}
-                        onClick={() => window.location.href = 'mailto:example@email.com'}
+                        onClick={() => window.location.href = 'mailto:koliberekart@icloud.com'}
                     >
-                        Wyślij wiadomość e-mail
+                        Send Email
                     </motion.button>
                 </motion.div>
             </div>
