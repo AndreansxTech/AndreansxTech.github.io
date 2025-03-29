@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
                     style={{ marginTop: '1rem' }}
                 >
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                        <span>Zaprojektowane i zbudowane przez AndreansxTech</span> 
+                        <span>Designed & Built by AndreansxTech</span> 
                         {React.createElement(FaHeart as React.ElementType, { style: { color: 'var(--accent)', fontSize: '0.7rem' } })}
                     </p>
                 </motion.div>
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
                     transition={{ delay: 0.3, duration: 0.5 }}
                     style={{ fontSize: '0.7rem', marginTop: '0.5rem', color: 'var(--text-secondary)', opacity: 0.7 }}
                 >
-                    &copy; {new Date().getFullYear()} AndreansxTech. Wszelkie prawa zastrzeżone.
+                    &copy; {new Date().getFullYear()} AndreansxTech. All rights reserved.
                 </motion.p>
             </div>
         </footer>

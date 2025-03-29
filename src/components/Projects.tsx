@@ -5,23 +5,23 @@ import { FaGithub, FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 const Projects: React.FC = () => {
     const projectList = [
         {
-            title: 'Staszic360',
-            description: 'Webowa aplikacja wirtualnej wycieczki, demonstrująca moje podstawowe umiejętności programowania i wdrażania projektów.',
-            technologies: ['React', 'Three.js', 'JavaScript', 'HTML/CSS'],
-            githubLink: 'https://github.com/AndreansxTech/Staszic360',
-            liveLink: 'https://github.com/AndreansxTech/Staszic360'
-        },
-        {
-            title: 'My-homelab',
-            description: 'Szczegółowa dokumentacja i konfiguracja mojego osobistego laboratorium domowego, gdzie rozwijam umiejętności sieciowe i infrastrukturalne.',
-            technologies: ['Networking', 'MikroTik', 'Infrastructure', 'Documentation'],
+            title: 'My Homelab',
+            description: 'Detailed documentation of my networking lab with configuration scenarios, network diagrams, and technical notes about enterprise-like setups.',
+            technologies: ['Networking', 'MikroTik', 'Brocade', 'Documentation'],
             githubLink: 'https://github.com/AndreansxTech/My-homelab',
             liveLink: null
         },
         {
+            title: 'Staszic360',
+            description: 'Web-based virtual tour application demonstrating my basic programming and project deployment skills.',
+            technologies: ['HTML', 'CSS', 'JavaScript', 'Pannellum.js'],
+            githubLink: 'https://github.com/AndreansxTech/Staszic360',
+            liveLink: 'https://AndreansxTech.github.io/Staszic360'
+        },
+        {
             title: 'Portfolio Website',
-            description: 'Moja osobista strona portfolio zbudowana przy użyciu React i TypeScript, z zastosowaniem nowoczesnego podejścia do projektowania.',
-            technologies: ['React', 'TypeScript', 'Framer Motion', 'Styled Components'],
+            description: 'My personal portfolio website built with React and TypeScript, using modern design approaches.',
+            technologies: ['React', 'TypeScript', 'Framer Motion'],
             githubLink: 'https://github.com/AndreansxTech/AndreansxTech.github.io',
             liveLink: 'https://andreansxtech.github.io'
         }
@@ -36,7 +36,7 @@ const Projects: React.FC = () => {
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true, amount: 0.2 }}
                 >
-                    <h2 className="fade-up">Moje projekty</h2>
+                    <h2 className="fade-up">My Projects</h2>
                 </motion.div>
                 
                 <div className="projects-grid">
@@ -99,7 +99,7 @@ const Projects: React.FC = () => {
                             fontFamily: 'var(--font-primary)'
                         }}
                     >
-                        Zobacz więcej na GitHubie
+                        See More on GitHub
                     </a>
                 </motion.div>
             </div>
