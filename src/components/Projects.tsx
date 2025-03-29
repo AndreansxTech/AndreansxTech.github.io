@@ -3,24 +3,24 @@ import React from 'react';
 const Projects: React.FC = () => {
     const projectList = [
         {
-            title: 'Project One',
-            description: 'Description of project one.',
-            link: 'https://link-to-project-one.com'
+            title: 'Staszic360',
+            description: 'Featured project from GitHub profile. Click to learn more about this project.',
+            link: 'https://github.com/AndreansxTech/Staszic360'
         },
         {
-            title: 'Project Two',
-            description: 'Description of project two.',
-            link: 'https://link-to-project-two.com'
+            title: 'My-homelab',
+            description: 'Documentation and setup of my personal homelab environment where I develop networking and infrastructure skills.',
+            link: 'https://github.com/AndreansxTech/My-homelab'
         },
         {
-            title: 'Project Three',
-            description: 'Description of project three.',
-            link: 'https://link-to-project-three.com'
+            title: 'Portfolio Website',
+            description: 'This personal portfolio website built with React and TypeScript.',
+            link: 'https://github.com/AndreansxTech/AndreansxTech.github.io'
         }
     ];
 
     return (
-        <div className="projects">
+        <div className="projects" id="projects">
             <h2>My Projects</h2>
             <ul>
                 {projectList.map((project, index) => (

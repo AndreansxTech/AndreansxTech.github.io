@@ -8,9 +8,13 @@ import './styles/index.css';
 
 const App: React.FC = () => {
     return (
-        <div>
+        <div className="app-container">
             <Header />
             <main>
+                <section id="hero">
+                    <h1>AndreansxTech</h1>
+                    <p>Aspiring Network Engineer</p>
+                </section>
                 <About />
                 <Projects />
                 <Contact />

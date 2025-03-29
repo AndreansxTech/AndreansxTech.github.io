@@ -1,7 +1,7 @@
 {
-  "name": "portfolio-website",
+  "name": "Andreansxtech-portfolio",
   "version": "1.0.0",
-  "description": "A portfolio website to showcase projects and skills.",
+  "description": "Web version of my portfolio with skills, interests, and goals, built with React.",
   "main": "src/index.tsx",
   "scripts": {
     "start": "react-scripts start",
@@ -10,8 +10,8 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {

@@ -1,1 +1,169 @@
-/* This file is intentionally left blank. */
+:root {
+  --bg-primary: #011627;
+  --bg-secondary: #0e2a3b;
+  --text-primary: #d6deeb;
+  --text-secondary: #637777;
+  --accent: #7fdbca;
+  --accent-secondary: #82aaff;
+  --highlight: #c792ea;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+header {
+  background-color: var(--bg-secondary);
+  padding: 1rem 2rem;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  justify-content: center;
+  padding: 0;
+}
+
+header nav ul li a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  color: var(--accent);
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section, .projects, div {
+  margin-bottom: 4rem;
+}
+
+h1, h2, h3 {
+  color: var(--accent);
+}
+
+h2 {
+  border-bottom: 2px solid var(--highlight);
+  padding-bottom: 0.5rem;
+}
+
+a {
+  color: var(--accent-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--highlight);
+}
+
+footer {
+  background-color: var(--bg-secondary);
+  padding: 1rem;
+  text-align: center;
+}
+
+.projects ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.projects li {
+  background-color: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.projects li:hover {
+  transform: translateY(-5px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--accent);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+button {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--highlight);
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.skill-badge {
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
