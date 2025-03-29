@@ -1,14 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio website of AndreansxTech - Aspiring Network Engineer">
-    <meta name="keywords" content="network engineering, systems administration, homelab, MikroTik">
-    <title>AndreansxTech - Network Engineer Portfolio</title>
-    <link rel="stylesheet" href="%PUBLIC_URL%/styles/index.css">
+    
+    <!-- Primary Meta Tags -->
+    <title>AndreansxTech | Portfolio - Aspiring Network Engineer</title>
+    <meta name="title" content="AndreansxTech | Portfolio - Aspiring Network Engineer">
+    <meta name="description" content="Portfolio i projekty AndreansxTech - specjalizacja w sieciach komputerowych, administracji systemów i infrastrukturze centrów danych.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://andreansxtech.github.io/">
+    <meta property="og:title" content="AndreansxTech | Portfolio - Aspiring Network Engineer">
+    <meta property="og:description" content="Portfolio i projekty AndreansxTech - specjalizacja w sieciach komputerowych, administracji systemów i infrastrukturze centrów danych.">
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://andreansxtech.github.io/">
+    <meta property="twitter:title" content="AndreansxTech | Portfolio - Aspiring Network Engineer">
+    <meta property="twitter:description" content="Portfolio i projekty AndreansxTech - specjalizacja w sieciach komputerowych, administracji systemów i infrastrukturze centrów danych.">
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.png">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Keywords -->
+    <meta name="keywords" content="network engineering, systems administration, homelab, MikroTik, CompTIA Network+, data center infrastructure">
+    
+    <style>
+        /* Hide default cursor when custom cursor is active */
+        * {
+            cursor: none !important;
+        }
+        
+        /* But ensure cursor is visible on small devices */
+        @media (max-width: 768px) {
+            * {
+                cursor: auto !important;
+            }
+            .cursor-dot, .cursor-outline {
+                display: none !important;
+            }
+        }
+        
+        /* Prevent content flash */
+        body {
+            background-color: #0a0a0a;
+        }
+    </style>
 </head>
 <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <!-- Made with ❤️ by AndreansxTech -->
 </body>
 </html>
