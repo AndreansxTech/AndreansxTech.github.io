@@ -27,6 +27,13 @@ const Projects: React.FC = () => {
         }
     ];
 
+    // Function to handle click on project card
+    const handleProjectClick = (url: string | null) => {
+        if (url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    };
+
     return (
         <section id="projects">
             <div className="container">
@@ -48,6 +55,11 @@ const Projects: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true, amount: 0.2 }}
+                            onClick={() => handleProjectClick(project.githubLink)}
+                            style={{
+                                cursor: project.githubLink ? 'pointer' : 'default',
+                                position: 'relative'
+                            }}
                         >
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                                 <div style={{ color: 'var(--accent)', fontSize: '1.5rem' }}>
@@ -55,12 +67,24 @@ const Projects: React.FC = () => {
                                 </div>
                                 <div className="project-links">
                                     {project.githubLink && (
-                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                                        <a 
+                                            href={project.githubLink} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            aria-label="GitHub Repository"
+                                            onClick={(e) => e.stopPropagation()} // Prevent triggering the parent onClick
+                                        >
                                             {React.createElement(FaGithub as React.ElementType)}
                                         </a>
                                     )}
                                     {project.liveLink && (
-                                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                                        <a 
+                                            href={project.liveLink} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            aria-label="Live Demo"
+                                            onClick={(e) => e.stopPropagation()} // Prevent triggering the parent onClick
+                                        >
                                             {React.createElement(FaExternalLinkAlt as React.ElementType)}
                                         </a>
                                     )}
@@ -75,6 +99,9 @@ const Projects: React.FC = () => {
                                     <span key={techIndex}>{tech}</span>
                                 ))}
                             </div>
+                            
+                            {/* Add a hover indicator to show the card is clickable */}
+                            <div className="click-indicator"></div>
                         </motion.div>
                     ))}
                 </div>

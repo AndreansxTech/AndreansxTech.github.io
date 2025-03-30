@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaServer, FaNetworkWired, FaShieldAlt } from 'react-icons/fa';
+import { FaServer, FaNetworkWired, FaShieldAlt, FaTerminal } from 'react-icons/fa';
 
 const About: React.FC = () => {
-    const skills = [
+    const interests = [
         "Network Routing",
         "Switching",
         "MikroTik RouterOS",
@@ -38,7 +38,7 @@ const About: React.FC = () => {
                             and scalable infrastructures—particularly those found in ISP and data center contexts.
                         </p>
                         <p>
-                            My homelab is my primary classroom: it's not a static setup or hobby, but rather 
+                            My homelab is my primary classroom: it's not a static setup or a typical self-hosting, but rather 
                             a dynamic environment where I rigorously test theories, deliberately break configurations, 
                             and rebuild networks to gain a solid understanding of both fundamental and advanced networking concepts.
                         </p>
@@ -53,8 +53,8 @@ const About: React.FC = () => {
                                 <span style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Infrastructure</span>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'var(--accent)' }}>
-                                {React.createElement(FaShieldAlt as React.ElementType, { size: 30 })}
-                                <span style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Security</span>
+                                {React.createElement(FaTerminal as React.ElementType, { size: 30 })}
+                                <span style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>CLI</span>
                             </div>
                         </div>
                     </motion.div>
@@ -74,18 +74,18 @@ const About: React.FC = () => {
                             My philosophy is simple: depth and understanding matter more than superficial familiarity.
                         </p>
 
-                        <h3>Skills</h3>
-                        <div className="skills-container">
-                            {skills.map((skill, index) => (
+                        <h3>Interests</h3>
+                        <div className="interests-container">
+                            {interests.map((interest, index) => (
                                 <motion.div 
                                     key={index} 
-                                    className="skill-badge"
+                                    className="interest-badge"
                                     initial={{ opacity: 0, y: 10 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1, duration: 0.5 }}
                                     viewport={{ once: true }}
                                 >
-                                    {skill}
+                                    {interest}
                                 </motion.div>
                             ))}
                         </div>
