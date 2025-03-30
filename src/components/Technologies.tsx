@@ -105,7 +105,7 @@ const Technologies: React.FC = () => {
                     viewport={{ once: true, amount: 0.2 }}
                     style={{ textAlign: 'center', width: '100%' }}
                 >
-                    <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>03. Tools & Technologies</p>
+                    <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>04. Tools & Technologies</p>
                     <h2 className="fade-up">Technologies I Use & Admire</h2>
                 </motion.div>
                 
