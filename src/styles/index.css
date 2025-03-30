@@ -4,6 +4,11 @@
   --text-primary: #F8F8F2;
   --text-secondary: #75715E;
   --accent: #66D9EF;
+  /*--bg-primary: #1a1a1a; /* Darkened background color 
+  --bg-lighter: #2a2a2a;  Slightly lighter background for contrast 
+  --text-primary: #e0e0e0;  Lightened text color for readability 
+  --text-secondary: #b0b0b0;  Secondary text color 
+  --accent: #0078d4; /* Keeping the accent color consistent */
   --accent-hover: #A1EDF8;
   --highlight: #F92672;
   --highlight-secondary: #AE81FF;

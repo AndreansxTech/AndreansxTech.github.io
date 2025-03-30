@@ -21,6 +21,7 @@ const About: React.FC = () => {
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true, amount: 0.2 }}
                 >
+                    <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>01. About Me</p>
                     <h2 className="fade-up">About Me</h2>
                 </motion.div>
                 

@@ -43,6 +43,7 @@ const Projects: React.FC = () => {
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true, amount: 0.2 }}
                 >
+                    <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>02. Projects</p>
                     <h2 className="fade-up">My Projects</h2>
                 </motion.div>
                 
