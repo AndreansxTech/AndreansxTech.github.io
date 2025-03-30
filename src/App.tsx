@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
@@ -11,6 +11,8 @@ import './styles/index.css';
 
 const App: React.FC = () => {
     const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+    const parallaxRef = useRef<HTMLDivElement>(null);
+    const heroContentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // Scroll animations
@@ -38,6 +40,18 @@ const App: React.FC = () => {
             } else {
                 setShowScrollIndicator(false);
             }
+
+            // Parallax effect for hero section
+            if (parallaxRef.current) {
+                const scrollPosition = window.scrollY;
+                parallaxRef.current.style.transform = `translateY(${scrollPosition * 0.4}px)`;
+            }
+
+            // Opacity effect for hero content based on scroll
+            if (heroContentRef.current && window.scrollY < window.innerHeight) {
+                const opacity = 1 - (window.scrollY / (window.innerHeight * 0.6));
+                heroContentRef.current.style.opacity = Math.max(0, opacity).toString();
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -59,8 +73,9 @@ const App: React.FC = () => {
             <CustomCursor />
             <Header />
             <main>
-                <section id="hero">
-                    <div className="container">
+                <section id="hero" className="parallax-container">
+                    <div ref={parallaxRef} className="parallax-bg"></div>
+                    <div ref={heroContentRef} className="container">
                         <p className="intro fade-up">Hi, my name is</p>
                         <h1 className="fade-up">Andreansx</h1>
                         <p className="fade-up">Aspiring Network Engineer</p>

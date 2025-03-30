@@ -330,7 +330,7 @@ footer {
   color: var(--text-secondary);
 }
 
-.social-links a:hover {
+social-links a:hover {
   color: var(--accent);
 }
 
@@ -670,4 +670,206 @@ button:focus:not(:focus-visible) {
     grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
     gap: 0.5rem;
   }
+}
+
+/* Scroll Animation Effects */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for tech cards */
+.tech-grid .tech-card {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Parallax effect for hero section */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Reveal effect for projects */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.reveal-left.visible, .reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Technology cards staggered animation delays */
+@media (prefers-reduced-motion: no-preference) {
+  .tech-card:nth-child(1) { transition-delay: 0.05s; }
+  .tech-card:nth-child(2) { transition-delay: 0.1s; }
+  .tech-card:nth-child(3) { transition-delay: 0.15s; }
+  .tech-card:nth-child(4) { transition-delay: 0.2s; }
+  .tech-card:nth-child(5) { transition-delay: 0.25s; }
+  .tech-card:nth-child(6) { transition-delay: 0.3s; }
+  .tech-card:nth-child(7) { transition-delay: 0.35s; }
+  .tech-card:nth-child(8) { transition-delay: 0.4s; }
+}
+
+/* Smooth scroll effect */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Motion path animation for scroll icon */
+.scroll-indicator {
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Animated background gradients */
+.animated-bg {
+  background: linear-gradient(270deg, var(--bg-lighter), var(--bg-secondary), var(--bg-darker));
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* Enhanced Parallax Effect for Hero Section */
+.parallax-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1e1f1c 0%, #272822 50%, #1e1f1c 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  transform: translateZ(0);
+  z-index: -1;
+}
+
+.parallax-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(102, 217, 239, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.parallax-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+#hero .container {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.3s ease-out;
+}
+
+/* Floating animation for hero elements */
+#hero h1 {
+  animation: float 6s ease-in-out infinite;
+}
+
+#hero p.intro {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+#hero p.fade-up:nth-child(3) {
+  animation: float 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+#hero p.description {
+  animation: float 9s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* 3D hover effect for section headings */
+h2 {
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+h2:hover {
+  transform: translateZ(15px);
+  text-shadow: 
+    0 0 10px rgba(102, 217, 239, 0.2),
+    0 0 20px rgba(102, 217, 239, 0.1);
+}
+
+/* Enhanced scroll reveal animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced motion path animation for scroll indicator with glow effect */
+.scroll-indicator {
+  animation: bounce 1.5s infinite;
+  box-shadow: 0 0 15px rgba(102, 217, 239, 0.2);
+}
+
+.scroll-indicator:hover {
+  box-shadow: 0 0 20px rgba(102, 217, 239, 0.4);
 }
