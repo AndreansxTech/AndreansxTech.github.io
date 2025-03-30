@@ -245,14 +245,14 @@ header .logo {
   gap: 2rem;
 }
 
-.skills-container {
+.interests-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.skill-badge {
+.interest-badge {
   padding: 0.5rem 1rem;
   background-color: var(--bg-secondary);
   border-radius: 4px;

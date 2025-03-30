@@ -5,38 +5,51 @@ import {
     FaApple,
     FaHtml5,
     FaGithub,
-    FaTerminal
+    FaTerminal,
+    FaPython
 } from 'react-icons/fa';
 import { 
     SiMikrotik, 
     SiCloudflare,
     SiProxmox,
     SiDebian,
-    SiBroadcom
+    SiBroadcom,
+    SiCplusplus,
+    SiIos
 } from 'react-icons/si';
 
 const Technologies: React.FC = () => {
-    const techItems = [
-        { name: "MikroTik", icon: SiMikrotik, color: "#0099ff" },
-        { name: "Debian", icon: SiDebian, color: "#A80030" },
-        { name: "Cloudflare", icon: SiCloudflare, color: "#F48120" },
-        { name: "Proxmox", icon: SiProxmox, color: "#E57000" },
-        { name: "Windows", icon: FaWindows, color: "#0078D6" },
-        { name: "Apple", icon: FaApple, color: "#A2AAAD" },
+    const programmingLanguages = [
         { name: "Bash", icon: FaTerminal, color: "#4EAA25" },
         { name: "HTML", icon: FaHtml5, color: "#E34F26" },
+        { name: "Python", icon: FaPython, color: "#4584b6" },
+        { name: "C++", icon: SiCplusplus, color: "#00599C" },
+
+    ];
+
+    const operatingSystems = [
+        { name: "Windows", icon: FaWindows, color: "#0078D6" },
+        { name: "iOS", icon: SiIos, color: "#A2AAAD" },
+        { name: "Debian", icon: SiDebian, color: "#A80030" },
+        { name: "Proxmox", icon: SiProxmox, color: "#E57000" },
+    ];
+
+    const brandsAndPlatforms = [
+        { name: "MikroTik", icon: SiMikrotik, color: "#f5f3f0" },
+        { name: "Cloudflare", icon: SiCloudflare, color: "#F48120" },
         { name: "GitHub", icon: FaGithub, color: "#181717" },
         { name: "Broadcom", icon: SiBroadcom, color: "#CC092F" }
     ];
 
     return (
         <section id="technologies">
-            <div className="container">
+            <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true, amount: 0.2 }}
+                    style={{ textAlign: 'center', width: '100%' }}
                 >
                     <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>03. Tools & Technologies</p>
                     <h2 className="fade-up">Technologies I Use & Admire</h2>
@@ -47,13 +60,14 @@ const Technologies: React.FC = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
-                    style={{ maxWidth: '700px', margin: '0 auto 3rem' }}
+                    style={{ maxWidth: '700px', margin: '0 auto 3rem', textAlign: 'center' }}
                 >
                     Here are some of the technologies, platforms, and vendors that shape my learning journey 
                     and infrastructure approach. I'm particularly focused on networking technologies and
                     enterprise-grade solutions.
                 </motion.p>
-                
+
+                {/* Row for Programming Languages */}
                 <motion.div 
                     className="tech-grid"
                     initial={{ opacity: 0 }}
@@ -62,13 +76,135 @@ const Technologies: React.FC = () => {
                     viewport={{ once: true }}
                     style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
+                        gridTemplateColumns: 'repeat(4, 120px)',
                         gap: '20px',
-                        maxWidth: '1000px',
-                        margin: '0 auto'
+                        justifyContent: 'center',
+                        width: '100%',
+                        marginBottom: '2rem'
                     }}
                 >
-                    {techItems.map((tech, index) => (
+                    {programmingLanguages.map((tech, index) => (
+                        <motion.div 
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.3, delay: index * 0.02 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileHover={{ 
+                                y: -5,
+                                scale: 1.1,
+                                transition: { duration: 0.2 }
+                            }}
+                            title={tech.name}
+                            style={{
+                                backgroundColor: 'var(--bg-lighter)',
+                                borderRadius: '12px',
+                                padding: '16px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                                aspectRatio: '1/1'
+                            }}
+                        >
+                            {React.createElement(tech.icon as React.ElementType, { 
+                                size: 36,
+                                color: tech.color
+                            })}
+                            <span style={{ 
+                                fontSize: '12px', 
+                                marginTop: '8px', 
+                                textAlign: 'center',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                maxWidth: '100%'
+                            }}>
+                                {tech.name}
+                            </span>
+                        </motion.div>
+                    ))}
+                </motion.div>
+
+                {/* Row for Operating Systems */}
+                <motion.div 
+                    className="tech-grid"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 120px)',
+                        gap: '20px',
+                        justifyContent: 'center',
+                        width: '100%',
+                        marginBottom: '2rem'
+                    }}
+                >
+                    {operatingSystems.map((tech, index) => (
+                        <motion.div 
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.3, delay: index * 0.02 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileHover={{ 
+                                y: -5,
+                                scale: 1.1,
+                                transition: { duration: 0.2 }
+                            }}
+                            title={tech.name}
+                            style={{
+                                backgroundColor: 'var(--bg-lighter)',
+                                borderRadius: '12px',
+                                padding: '16px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                                aspectRatio: '1/1'
+                            }}
+                        >
+                            {React.createElement(tech.icon as React.ElementType, { 
+                                size: 36,
+                                color: tech.color
+                            })}
+                            <span style={{ 
+                                fontSize: '12px', 
+                                marginTop: '8px', 
+                                textAlign: 'center',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                maxWidth: '100%'
+                            }}>
+                                {tech.name}
+                            </span>
+                        </motion.div>
+                    ))}
+                </motion.div>
+
+                {/* Row for Brands and Platforms */}
+                <motion.div 
+                    className="tech-grid"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 120px)',
+                        gap: '20px',
+                        justifyContent: 'center',
+                        width: '100%'
+                    }}
+                >
+                    {brandsAndPlatforms.map((tech, index) => (
                         <motion.div 
                             key={index}
                             initial={{ opacity: 0, scale: 0.9 }}
