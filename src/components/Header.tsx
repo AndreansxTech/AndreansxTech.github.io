@@ -8,6 +8,7 @@ const Header: React.FC = () => {
     const navItems = [
         { name: "About", href: "#about" },
         { name: "Projects", href: "#projects" },
+        { name: "Roadmap", href: "#roadmap" },
         { name: "Technologies", href: "#technologies" },
         { name: "Contact", href: "#contact" }
     ];
