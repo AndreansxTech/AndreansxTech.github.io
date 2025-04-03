@@ -120,37 +120,73 @@ section {
   justify-content: center;
 }
 
-/* Header */
+/* Header - Glassmorphic style */
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: rgba(20, 20, 20, 0.9);
-  backdrop-filter: blur(8px);
   padding: 1.5rem 0;
   transition: all 0.3s ease;
 }
 
 header.scrolled {
   padding: 1rem 0;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px; /* Zwiększone maksymalna szerokość, aby zapewnić więcej miejsca */
+}
+
+header nav {
+  margin-left: auto; /* Przesunięcie nawigacji bardziej w prawo */
 }
 
 header nav ul {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 2rem; /* Zmniejszony odstęp między elementami nawigacji */
   justify-content: flex-end;
+  margin-left: 2.5rem; /* Dodatkowa przestrzeń między logo a nawigacją */
 }
 
 header nav ul li a {
   color: var(--text-primary);
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  font-size: 0.85rem; /* Mniejsza czcionka */
+  letter-spacing: 0.5px; /* Zmniejszony odstęp między literami */
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0.6rem; /* Zmniejszony padding */
+  border-radius: 4px;
+  background: linear-gradient(to right, transparent, transparent);
+  white-space: nowrap; /* Zapobiega zawijaniu tekstu */
+}
+
+header nav ul li a:hover {
+  opacity: 1;
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(102, 217, 239, 0.3);
+  background: linear-gradient(to right, rgba(102, 217, 239, 0.05), transparent);
+}
+
+header nav ul li a span {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+header nav ul li a:hover span {
+  opacity: 1;
+}
+
+header nav ul li a:after {
+  height: 0; /* Remove underline effect */
+  display: none;
 }
 
 header .logo {
@@ -158,6 +194,21 @@ header .logo {
   font-weight: bold;
   font-size: 1.5rem;
   color: var(--accent);
+  position: relative;
+  text-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+  margin-right: 3rem; /* Dodatkowa przestrzeń po prawej stronie logo */
+}
+
+header .logo:after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 8px;
+  border-radius: 4px;
+  background-color: rgba(102, 217, 239, 0.1);
+  bottom: 0;
+  left: -10%;
+  z-index: -1;
 }
 
 /* Hero section */

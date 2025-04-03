@@ -1,9 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [hidden, setHidden] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    
+    const { scrollY } = useScroll();
+    const headerOpacity = useTransform(scrollY, [0, 100], [0.6, 0.85]); // Zwiększona nieprzezroczystość
+    const headerBlur = useTransform(scrollY, [0, 100], [8, 15]); // Zwiększone rozmycie
+    
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            // Sprawdź czy przewijamy w dół czy w górę
+            if (currentScrollY > lastScrollY && currentScrollY > 300) {
+                setHidden(true); // Schowaj nagłówek gdy przewijamy w dół i jesteśmy poniżej 300px
+            } else {
+                setHidden(false); // Pokaż nagłówek gdy przewijamy do góry
+            }
+            
+            // Sprawdź czy przewinęliśmy już nieco w dół
+            const isScrolled = currentScrollY > 50;
+            if (isScrolled !== scrolled) {
+                setScrolled(isScrolled);
+            }
+            
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrolled, lastScrollY]);
 
     const navItems = [
         { name: "About", href: "#about" },
@@ -31,7 +64,17 @@ const Header: React.FC = () => {
     };
 
     return (
-        <header>
+        <motion.header
+            style={{ 
+                backgroundColor: scrolled ? `rgba(20, 20, 20, ${headerOpacity})` : 'rgba(20, 20, 20, 0.6)',
+                backdropFilter: `blur(${headerBlur}px)`,
+                WebkitBackdropFilter: `blur(${headerBlur}px)`,
+                borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.05)' : 'none',
+                transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
+                transition: 'transform 0.3s ease, background-color 0.3s ease'
+            }}
+            className={scrolled ? 'scrolled' : ''}
+        >
             <div className="container">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <motion.div 
@@ -76,7 +119,7 @@ const Header: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </header>
+        </motion.header>
     );
 };
 
