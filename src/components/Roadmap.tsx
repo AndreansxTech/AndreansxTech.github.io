@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, TargetAndTransition } from 'framer-motion';
 import { 
     FaCheck, 
     FaHourglassHalf, 
@@ -59,6 +59,83 @@ const Roadmap: React.FC = () => {
         }
     ];
 
+    // Ref to track scroll direction
+    const lastScrollY = useRef<number>(0);
+    // Ref for the roadmap container
+    const roadmapRef = useRef<HTMLDivElement>(null);
+    // State to track if we've initialized the last scroll position
+    const scrollInitialized = useRef<boolean>(false);
+    // Ref for the animation process
+    const animationInProgress = useRef<boolean>(false);
+
+    useEffect(() => {
+        // Set initial scroll position for accurate direction tracking
+        lastScrollY.current = window.scrollY;
+        scrollInitialized.current = true;
+        
+        // Track scroll direction
+        const handleScroll = () => {
+            lastScrollY.current = window.scrollY;
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+
+        // Observer for the whole roadmap section
+        const sectionObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !animationInProgress.current) {
+                animateRoadmapItems();
+            } else if (!entries[0].isIntersecting) {
+                // Reset visibility of items when section is out of view
+                document.querySelectorAll('.roadmap-item').forEach(item => {
+                    item.classList.remove('visible');
+                });
+            }
+        }, { threshold: 0.1 });
+
+        if (roadmapRef.current) {
+            sectionObserver.observe(roadmapRef.current);
+        }
+
+        // Function to animate roadmap items based on scroll direction
+        const animateRoadmapItems = () => {
+            const currentScrollY = window.scrollY;
+            const scrollingDown = scrollInitialized.current ? currentScrollY > lastScrollY.current : true;
+            
+            animationInProgress.current = true;
+            
+            // Get all roadmap items
+            const roadmapItems = document.querySelectorAll('.roadmap-item');
+            const allItems = Array.from(roadmapItems);
+            
+            // For scrolling direction:
+            // When scrolling DOWN, animate from top to bottom (normal order)
+            // When scrolling UP, animate from bottom to top (reversed order)
+            const itemsToAnimate = scrollingDown ? allItems : [...allItems].reverse();
+            
+            // Reset all items first
+            allItems.forEach(item => item.classList.remove('visible'));
+            
+            // Animate each item with delay
+            itemsToAnimate.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                    
+                    // If this is the last item, mark animation as complete
+                    if (index === itemsToAnimate.length - 1) {
+                        setTimeout(() => {
+                            animationInProgress.current = false;
+                        }, 500); // Short delay after last animation
+                    }
+                }, index * 150); // 150ms staggered delay
+            });
+        };
+
+        return () => {
+            sectionObserver.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     // Function to render appropriate status icon
     const getStatusIcon = (status: string) => {
         switch (status) {
@@ -87,6 +164,22 @@ const Roadmap: React.FC = () => {
         }
     };
 
+    // Determine current scroll direction for initial state
+    const isScrollingDown = (): boolean => {
+        return scrollInitialized.current 
+            ? window.scrollY > lastScrollY.current 
+            : true;
+    };
+
+    // Initial animation properties based on scroll direction
+    const getInitialProps = (): TargetAndTransition => {
+        const scrollDown = isScrollingDown();
+        return {
+            opacity: 0,
+            y: scrollDown ? 20 : -20
+        };
+    };
+
     return (
         <section id="roadmap">
             <div className="container">
@@ -94,7 +187,7 @@ const Roadmap: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                     style={{ textAlign: 'center' }}
                 >
                     <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>03. Career Journey</p>
@@ -105,7 +198,7 @@ const Roadmap: React.FC = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     style={{ maxWidth: '700px', margin: '0 auto 3rem', textAlign: 'center' }}
                 >
                     A visualization of my professional development path in networking and infrastructure technology.
@@ -113,10 +206,11 @@ const Roadmap: React.FC = () => {
 
                 <motion.div 
                     className="roadmap-container"
+                    ref={roadmapRef}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -128,14 +222,59 @@ const Roadmap: React.FC = () => {
                         margin: '0 auto'
                     }}
                 >
+                    {/* Add CSS styles for animation */}
+                    <style>
+                    {`
+                        .roadmap-item {
+                            opacity: 0;
+                            transform: translateY(20px);
+                            transition: opacity 0.5s ease, transform 0.5s ease;
+                        }
+                        
+                        .roadmap-item.visible {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                        
+                        .roadmap-item.from-bottom {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+                        
+                        .roadmap-item.from-top {
+                            opacity: 0;
+                            transform: translateY(-20px);
+                        }
+                        
+                        @keyframes fadeInFromBottom {
+                            from {
+                                opacity: 0;
+                                transform: translateY(20px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
+                        @keyframes fadeInFromTop {
+                            from {
+                                opacity: 0;
+                                transform: translateY(-20px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                    `}
+                    </style>
+                
                     {/* Roadmap items - vertical layout */}
                     {roadmapItems.map((item, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            viewport={{ once: true }}
+                            className="roadmap-item"
                             style={{
                                 width: '100%',
                                 margin: '0.75rem 0',
@@ -150,8 +289,8 @@ const Roadmap: React.FC = () => {
                                         border: `2px solid ${getStatusColor(item.status)}`,
                                         borderRadius: '12px',
                                         padding: '1.5rem',
-                                        backgroundColor: 'var(--bg-lighter)',
-                                        boxShadow: `0 0 15px ${getStatusColor(item.status)}`,
+                                        backgroundColor: 'var(--bg-secondary)',
+                                        boxShadow: `0 0 15px rgba(${item.status === 'completed' ? '78, 170, 37' : item.status === 'in-progress' ? '249, 168, 38' : '128, 128, 128'}, 0.2)`,
                                         display: 'flex',
                                         alignItems: 'center',
                                         minHeight: '100px', // Taller height for certificate boxes
@@ -160,15 +299,15 @@ const Roadmap: React.FC = () => {
                                     {/* Status indicator */}
                                     <div 
                                         style={{
-                                            width: '50px', // Increased from 40px
-                                            height: '50px', // Increased from 40px
+                                            width: '50px',
+                                            height: '50px',
                                             borderRadius: '50%',
                                             backgroundColor: getStatusColor(item.status),
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
                                             color: 'white',
-                                            fontSize: '1.5rem', // Increased from 1rem
+                                            fontSize: '1.5rem',
                                             marginRight: '1.5rem',
                                             boxShadow: '0 0 10px ' + getStatusColor(item.status),
                                             flexShrink: 0
@@ -180,7 +319,7 @@ const Roadmap: React.FC = () => {
                                     {/* Certificate icon */}
                                     <div 
                                         style={{
-                                            fontSize: '3rem', // Increased from 2rem
+                                            fontSize: '3rem',
                                             color: getStatusColor(item.status), 
                                             marginRight: '1.5rem',
                                             display: 'flex',
@@ -202,7 +341,7 @@ const Roadmap: React.FC = () => {
                                 <div 
                                     style={{
                                         padding: '1rem 1.5rem',
-                                        backgroundColor: 'var(--bg-lighter)',
+                                        backgroundColor: 'var(--bg-secondary)',
                                         borderRadius: '8px',
                                         display: 'flex',
                                         alignItems: 'center',
@@ -211,15 +350,15 @@ const Roadmap: React.FC = () => {
                                     {/* Status indicator */}
                                     <div 
                                         style={{
-                                            width: '40px', // Increased from 40px
-                                            height: '40px', // Increased from 40px
+                                            width: '40px',
+                                            height: '40px',
                                             borderRadius: '50%',
                                             backgroundColor: getStatusColor(item.status),
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
                                             color: 'white',
-                                            fontSize: '1.4rem', // Increased from 1rem
+                                            fontSize: '1.4rem',
                                             marginRight: '1.5rem',
                                             boxShadow: '0 0 10px ' + getStatusColor(item.status),
                                             flexShrink: 0
@@ -231,7 +370,7 @@ const Roadmap: React.FC = () => {
                                     {/* Item icon */}
                                     <div 
                                         style={{
-                                            fontSize: '2.25rem', // Increased from 1.5rem
+                                            fontSize: '2.25rem',
                                             color: getStatusColor(item.status), 
                                             marginRight: '1.5rem',
                                             display: 'flex',
@@ -249,7 +388,7 @@ const Roadmap: React.FC = () => {
                                     </div>
                                 </div>
                             )}
-                        </motion.div>
+                        </div>
                     ))}
 
                     {/* Future dots */}

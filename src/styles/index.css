@@ -802,6 +802,17 @@ button:focus:not(:focus-visible) {
   transform: translateY(0);
 }
 
+/* Dodajemy style do animacji dla elementów roadmapy */
+.roadmap-item {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.roadmap-item.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 /* Staggered animations for tech cards */
 .tech-grid .tech-card {
   opacity: 0;
@@ -991,4 +1002,87 @@ h2:hover {
 
 .scroll-indicator:hover {
   box-shadow: 0 0 20px rgba(102, 217, 239, 0.4);
+}
+
+/* Scroll Animation Effects with direction */
+.scroll-reveal {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.scroll-reveal.visible-from-bottom {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+.scroll-reveal.visible-from-top {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInDown 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+/* Technology cards with scroll direction based animations */
+.tech-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.tech-card.visible-from-bottom {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+.tech-card.visible-from-top {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInDown 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+/* Animation keyframes for scroll direction */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Also add animations for left/right direction */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

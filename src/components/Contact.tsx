@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                     style={{ textAlign: 'center' }}
                 >
                     <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>04. What's Next?</p>
@@ -20,7 +20,7 @@ const Contact: React.FC = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         style={{ maxWidth: '600px', margin: '0 auto 3rem auto' }}
                     >
                         Feel free to reach out if you share similar interests or want to discuss networking, 
@@ -33,7 +33,7 @@ const Contact: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         style={{ 
                             display: 'flex', 
                             justifyContent: 'center', 
@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         whileHover={{ 
                             scale: 1.05,
                             backgroundColor: 'rgba(100, 255, 218, 0.1)'
