@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, TargetAndTransition } from 'framer-motion';
 import { FaServer, FaNetworkWired, FaShieldAlt, FaTerminal } from 'react-icons/fa';
 
 const About: React.FC = () => {
@@ -12,14 +12,95 @@ const About: React.FC = () => {
         "Network Monitoring"
     ];
     
+    // Ref to track scroll direction
+    const lastScrollY = useRef<number>(0);
+    // State to track if we've initialized the last scroll position
+    const scrollInitialized = useRef<boolean>(false);
+    
+    useEffect(() => {
+        // Set initial scroll position for accurate direction tracking
+        lastScrollY.current = window.scrollY;
+        scrollInitialized.current = true;
+        
+        // Track scroll direction
+        const handleScroll = () => {
+            lastScrollY.current = window.scrollY;
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    
+    // Helper function to create animation based on inView and scroll direction
+    const getScrollAnimation = (inView: boolean): TargetAndTransition => {
+        // Only check direction if we've initialized the last scroll position
+        const currentScrollY = window.scrollY;
+        const scrollingDown = scrollInitialized.current ? currentScrollY > lastScrollY.current : true;
+        
+        if (!inView) {
+            // When element leaves viewport, animation depends on scroll direction
+            return {
+                opacity: 0,
+                y: scrollingDown ? 30 : -30, // Exits in opposite direction to scrolling
+                transition: { duration: 0.3 }
+            };
+        }
+        
+        // When element enters viewport
+        return {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5 }
+        };
+    };
+    
+    // Determine current scroll direction for initial state
+    const isScrollingDown = (): boolean => {
+        return scrollInitialized.current 
+            ? window.scrollY > lastScrollY.current 
+            : true;
+    };
+    
+    // Initial animation properties based on scroll direction
+    const getInitialYProps = (): TargetAndTransition => {
+        const scrollDown = isScrollingDown();
+        return {
+            opacity: 0,
+            y: scrollDown ? 30 : -30
+        };
+    };
+    
+    // Initial animation properties for x-axis motion when scrolling down
+    const getInitialLeftProps = (): TargetAndTransition => {
+        return {
+            opacity: 0,
+            x: -30
+        };
+    };
+    
+    // Initial animation properties for x-axis motion when scrolling up
+    const getInitialRightProps = (): TargetAndTransition => {
+        return {
+            opacity: 0,
+            x: 30
+        };
+    };
+    
     return (
         <section id="about">
             <div className="container">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={getInitialYProps()}
+                    whileInView="visible"
+                    variants={{
+                        visible: (custom: boolean) => getScrollAnimation(true)
+                    }}
+                    custom={isScrollingDown()}
                     transition={{ duration: 0.5 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                 >
                     <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>01. About Me</p>
                     <h2 className="fade-up">About Me</h2>
@@ -27,10 +108,16 @@ const About: React.FC = () => {
                 
                 <div className="about-content">
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.7 }}
-                        viewport={{ once: true, amount: 0.2 }}
+                        initial={getInitialLeftProps()}
+                        whileInView="visible"
+                        variants={{
+                            visible: () => ({
+                                opacity: 1,
+                                x: 0,
+                                transition: { duration: 0.7 }
+                            })
+                        }}
+                        viewport={{ once: false, amount: 0.2 }}
                         className="fade-up"
                     >
                         <p>
@@ -61,10 +148,16 @@ const About: React.FC = () => {
                     </motion.div>
                     
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.7 }}
-                        viewport={{ once: true, amount: 0.2 }}
+                        initial={getInitialRightProps()}
+                        whileInView="visible"
+                        variants={{
+                            visible: () => ({
+                                opacity: 1,
+                                x: 0,
+                                transition: { duration: 0.7 }
+                            })
+                        }}
+                        viewport={{ once: false, amount: 0.2 }}
                         className="fade-up"
                     >
                         <h3>Career Aspirations</h3>
@@ -82,9 +175,16 @@ const About: React.FC = () => {
                                     key={index} 
                                     className="interest-badge"
                                     initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1, duration: 0.5 }}
-                                    viewport={{ once: true }}
+                                    whileInView="visible"
+                                    variants={{
+                                        visible: (custom: boolean) => ({
+                                            opacity: 1, 
+                                            y: 0,
+                                            transition: { delay: index * 0.1, duration: 0.5 }
+                                        })
+                                    }}
+                                    custom={isScrollingDown()}
+                                    viewport={{ once: false }}
                                 >
                                     {interest}
                                 </motion.div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, TargetAndTransition } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 
 const Projects: React.FC = () => {
@@ -27,6 +27,59 @@ const Projects: React.FC = () => {
         }
     ];
 
+    // Ref to track scroll direction
+    const lastScrollY = useRef<number>(0);
+    const projectsSectionRef = useRef<HTMLDivElement>(null);
+    // State to track if we've initialized the last scroll position
+    const scrollInitialized = useRef<boolean>(false);
+
+    useEffect(() => {
+        // Set initial scroll position for accurate direction tracking
+        lastScrollY.current = window.scrollY;
+        scrollInitialized.current = true;
+        
+        // Track scroll direction
+        const handleScroll = () => {
+            lastScrollY.current = window.scrollY;
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+
+        // Observer for project cards
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const currentScrollY = window.scrollY;
+                const scrollingDown = scrollInitialized.current ? currentScrollY > lastScrollY.current : true;
+                
+                if (entry.isIntersecting) {
+                    // Element is entering viewport
+                    if (scrollingDown) {
+                        // Scrolling down - animate from bottom
+                        entry.target.classList.add('visible-from-bottom');
+                        entry.target.classList.remove('visible-from-top');
+                    } else {
+                        // Scrolling up - animate from top
+                        entry.target.classList.add('visible-from-top');
+                        entry.target.classList.remove('visible-from-bottom');
+                    }
+                } else {
+                    // Element is leaving viewport
+                    entry.target.classList.remove('visible-from-top', 'visible-from-bottom');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            projectObserver.observe(card);
+        });
+
+        return () => {
+            projectObserver.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     // Function to handle click on project card
     const handleProjectClick = (url: string | null) => {
         if (url) {
@@ -34,14 +87,57 @@ const Projects: React.FC = () => {
         }
     };
 
+    // Helper function to create animation based on inView and scroll direction
+    const getScrollAnimation = (inView: boolean): TargetAndTransition => {
+        // Only check direction if we've initialized the last scroll position
+        const currentScrollY = window.scrollY;
+        const scrollingDown = scrollInitialized.current ? currentScrollY > lastScrollY.current : true;
+        
+        if (!inView) {
+            // When element leaves viewport, animation depends on scroll direction
+            return {
+                opacity: 0,
+                y: scrollingDown ? 30 : -30, // Exits in opposite direction to scrolling
+                transition: { duration: 0.3 }
+            };
+        }
+        
+        // When element enters viewport
+        return {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5 }
+        };
+    };
+
+    // Determine current scroll direction for initial state
+    const isScrollingDown = (): boolean => {
+        return scrollInitialized.current 
+            ? window.scrollY > lastScrollY.current 
+            : true;
+    };
+
+    // Initial animation properties based on scroll direction
+    const getInitialProps = (): TargetAndTransition => {
+        const scrollDown = isScrollingDown();
+        return {
+            opacity: 0,
+            y: scrollDown ? 30 : -30
+        };
+    };
+
     return (
-        <section id="projects">
+        <section id="projects" ref={projectsSectionRef}>
             <div className="container">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={getInitialProps()}
+                    whileInView="visible"
+                    variants={{
+                        visible: (custom: boolean) => getScrollAnimation(true)
+                    }}
+                    custom={isScrollingDown()}
                     transition={{ duration: 0.5 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                 >
                     <p className="intro" style={{ color: 'var(--accent)', fontFamily: 'var(--font-primary)', marginBottom: '1rem' }}>02. Projects</p>
                     <h2 className="fade-up">My Projects</h2>
@@ -52,10 +148,14 @@ const Projects: React.FC = () => {
                         <motion.div 
                             className="project-card"
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={getInitialProps()}
+                            whileInView="visible"
+                            variants={{
+                                visible: (custom: boolean) => getScrollAnimation(true)
+                            }}
+                            custom={isScrollingDown()}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            viewport={{ once: true, amount: 0.2 }}
+                            viewport={{ once: false, amount: 0.2 }}
                             onClick={() => handleProjectClick(project.githubLink)}
                             style={{
                                 cursor: project.githubLink ? 'pointer' : 'default',
@@ -109,10 +209,14 @@ const Projects: React.FC = () => {
 
                 <motion.div 
                     style={{ textAlign: 'center', marginTop: '3rem' }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={getInitialProps()}
+                    whileInView="visible"
+                    variants={{
+                        visible: (custom: boolean) => getScrollAnimation(true)
+                    }}
+                    custom={isScrollingDown()}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                 >
                     <a 
                         href="https://github.com/AndreansxTech" 
