@@ -15,33 +15,33 @@ const Technologies: React.FC = () => {
             name: "MikroTik", 
             icon: SiMikrotik, 
             color: "#f5f3f0",
-            description: "Niezawodne rozwiązania sieciowe, które oferują świetny stosunek ceny do możliwości. Uwielbiam ich elastyczność w konfiguracji i zaawansowane funkcje routingu."
+            description: "Reliable networking solutions that offer great value for money. I love their flexibility in configuration and advanced routing features."
         },
         { 
             name: "Debian", 
             icon: SiDebian, 
             color: "#A80030",
-            description: "Stabilny i bezpieczny system operacyjny, idealny dla serwerów. Cenię go za jego niezawodność i dostępne repozytoria oprogramowania."
+            description: "A stable and secure operating system, ideal for servers. I value it for its reliability and the availability of software repositories."
         },
         { 
             name: "GitHub", 
             icon: FaGithub, 
             color: "#ffffff",
-            description: "Narzędzie niezbędne do współpracy nad projektami i kontroli wersji. Korzystam z niego do przechowywania wszystkich moich projektów i nauki od społeczności."
+            description: "An essential tool for project collaboration and version control. I use it to store all my projects and learn from the community."
         },
         { 
             name: "Cloudflare", 
             icon: SiCloudflare, 
             color: "#F48120",
-            description: "Usługa zapewniająca bezpieczeństwo i wydajność stron. Wykorzystuję ją do zabezpieczania moich serwisów oraz przyspieszania dostępu do nich."
+            description: "A service that ensures website security and performance. I use it to secure my services and accelerate access to them."
         }
     ];
 
-    // Ref dla scroll animations
+    // Ref for scroll animations
     const techSectionRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Observer dla głównej sekcji
+        // Observer for the main section
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -50,11 +50,11 @@ const Technologies: React.FC = () => {
             });
         }, { threshold: 0.1 });
 
-        // Observer dla kart z opóźnieniami
+        // Observer for cards with delays
         const cardObserver = new IntersectionObserver(entries => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Dodaj opóźnienie bazując na indeksie
+                    // Add delay based on index
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, index * 100);
@@ -62,12 +62,12 @@ const Technologies: React.FC = () => {
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Obserwuj sekcję
+        // Observe the section
         if (techSectionRef.current) {
             observer.observe(techSectionRef.current);
         }
 
-        // Obserwuj wszystkie karty
+        // Observe all cards
         document.querySelectorAll('.tech-card').forEach(card => {
             cardObserver.observe(card);
         });
