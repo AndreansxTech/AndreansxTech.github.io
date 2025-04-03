@@ -1,53 +1,47 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
-    FaWindows,
-    FaApple,
-    FaHtml5,
-    FaGithub,
-    FaTerminal,
-    FaPython
+    FaGithub
 } from 'react-icons/fa';
 import { 
     SiMikrotik, 
     SiCloudflare,
-    SiProxmox,
-    SiDebian,
-    SiBroadcom,
-    SiCplusplus,
-    SiIos
+    SiDebian
 } from 'react-icons/si';
 
 const Technologies: React.FC = () => {
-    const programmingLanguages = [
-        { name: "Bash", icon: FaTerminal, color: "#4EAA25" },
-        { name: "HTML", icon: FaHtml5, color: "#E34F26" },
-        { name: "Python", icon: FaPython, color: "#4584b6" },
-        { name: "C++", icon: SiCplusplus, color: "#00599C" },
+    const techItems = [
+        { 
+            name: "MikroTik", 
+            icon: SiMikrotik, 
+            color: "#f5f3f0",
+            description: "Niezawodne rozwiązania sieciowe, które oferują świetny stosunek ceny do możliwości. Uwielbiam ich elastyczność w konfiguracji i zaawansowane funkcje routingu."
+        },
+        { 
+            name: "Debian", 
+            icon: SiDebian, 
+            color: "#A80030",
+            description: "Stabilny i bezpieczny system operacyjny, idealny dla serwerów. Cenię go za jego niezawodność i dostępne repozytoria oprogramowania."
+        },
+        { 
+            name: "GitHub", 
+            icon: FaGithub, 
+            color: "#ffffff",
+            description: "Narzędzie niezbędne do współpracy nad projektami i kontroli wersji. Korzystam z niego do przechowywania wszystkich moich projektów i nauki od społeczności."
+        },
+        { 
+            name: "Cloudflare", 
+            icon: SiCloudflare, 
+            color: "#F48120",
+            description: "Usługa zapewniająca bezpieczeństwo i wydajność stron. Wykorzystuję ją do zabezpieczania moich serwisów oraz przyspieszania dostępu do nich."
+        }
     ];
 
-    const operatingSystems = [
-        { name: "Windows", icon: FaWindows, color: "#0078D6" },
-        { name: "iOS", icon: SiIos, color: "#A2AAAD" },
-        { name: "Debian", icon: SiDebian, color: "#A80030" },
-        { name: "Proxmox", icon: SiProxmox, color: "#E57000" },
-    ];
-
-    const brandsAndPlatforms = [
-        { name: "MikroTik", icon: SiMikrotik, color: "#f5f3f0" },
-        { name: "Cloudflare", icon: SiCloudflare, color: "#F48120" },
-        { name: "GitHub", icon: FaGithub, color: "#181717" },
-        { name: "Broadcom", icon: SiBroadcom, color: "#CC092F" }
-    ];
-
-    // Refs for scroll animations
+    // Ref dla scroll animations
     const techSectionRef = useRef<HTMLDivElement>(null);
-    const gridOneRef = useRef<HTMLDivElement>(null);
-    const gridTwoRef = useRef<HTMLDivElement>(null);
-    const gridThreeRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Observer for main section
+        // Observer dla głównej sekcji
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -56,11 +50,11 @@ const Technologies: React.FC = () => {
             });
         }, { threshold: 0.1 });
 
-        // Observer for cards with staggered delays
+        // Observer dla kart z opóźnieniami
         const cardObserver = new IntersectionObserver(entries => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Add delay based on index
+                    // Dodaj opóźnienie bazując na indeksie
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, index * 100);
@@ -68,23 +62,12 @@ const Technologies: React.FC = () => {
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Observe the section
+        // Obserwuj sekcję
         if (techSectionRef.current) {
             observer.observe(techSectionRef.current);
         }
 
-        // Observe grids
-        if (gridOneRef.current) {
-            observer.observe(gridOneRef.current);
-        }
-        if (gridTwoRef.current) {
-            observer.observe(gridTwoRef.current);
-        }
-        if (gridThreeRef.current) {
-            observer.observe(gridThreeRef.current);
-        }
-
-        // Observe all cards
+        // Obserwuj wszystkie karty
         document.querySelectorAll('.tech-card').forEach(card => {
             cardObserver.observe(card);
         });
@@ -97,7 +80,7 @@ const Technologies: React.FC = () => {
 
     return (
         <section id="technologies" className="animated-bg">
-            <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -121,194 +104,29 @@ const Technologies: React.FC = () => {
                     enterprise-grade solutions.
                 </motion.p>
 
-                <div ref={techSectionRef} className="scroll-reveal">
-                    {/* Row for Programming Languages */}
-                    <motion.div 
-                        ref={gridOneRef}
-                        className="tech-grid scroll-reveal"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(4, 120px)',
-                            gap: '20px',
-                            justifyContent: 'center',
-                            width: '100%',
-                            marginBottom: '2rem'
-                        }}
-                    >
-                        {programmingLanguages.map((tech, index) => (
-                            <motion.div 
-                                key={index}
-                                className="tech-card"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: index * 0.1 }}
-                                viewport={{ once: true, amount: 0.1 }}
-                                whileHover={{ 
-                                    y: -5,
-                                    scale: 1.1,
-                                    transition: { duration: 0.2 }
-                                }}
-                                title={tech.name}
-                                style={{
-                                    backgroundColor: 'var(--bg-lighter)',
-                                    borderRadius: '12px',
-                                    padding: '16px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    cursor: 'pointer',
-                                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                                    aspectRatio: '1/1'
-                                }}
-                            >
+                <div ref={techSectionRef} className="tech-grid scroll-reveal">
+                    {techItems.map((tech, index) => (
+                        <motion.div 
+                            key={index}
+                            className="tech-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileHover={{ y: -5 }}
+                        >
+                            <div className="tech-icon">
                                 {React.createElement(tech.icon as React.ElementType, { 
-                                    size: 36,
+                                    size: 48,
                                     color: tech.color
                                 })}
-                                <span style={{ 
-                                    fontSize: '12px', 
-                                    marginTop: '8px', 
-                                    textAlign: 'center',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                    whiteSpace: 'nowrap',
-                                    maxWidth: '100%'
-                                }}>
-                                    {tech.name}
-                                </span>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-
-                    {/* Row for Operating Systems */}
-                    <motion.div 
-                        ref={gridTwoRef}
-                        className="tech-grid scroll-reveal"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        viewport={{ once: true }}
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(4, 120px)',
-                            gap: '20px',
-                            justifyContent: 'center',
-                            width: '100%',
-                            marginBottom: '2rem'
-                        }}
-                    >
-                        {operatingSystems.map((tech, index) => (
-                            <motion.div 
-                                key={index}
-                                className="tech-card"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-                                viewport={{ once: true, amount: 0.1 }}
-                                whileHover={{ 
-                                    y: -5,
-                                    scale: 1.1,
-                                    transition: { duration: 0.2 }
-                                }}
-                                title={tech.name}
-                                style={{
-                                    backgroundColor: 'var(--bg-lighter)',
-                                    borderRadius: '12px',
-                                    padding: '16px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    cursor: 'pointer',
-                                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                                    aspectRatio: '1/1'
-                                }}
-                            >
-                                {React.createElement(tech.icon as React.ElementType, { 
-                                    size: 36,
-                                    color: tech.color
-                                })}
-                                <span style={{ 
-                                    fontSize: '12px', 
-                                    marginTop: '8px', 
-                                    textAlign: 'center',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                    whiteSpace: 'nowrap',
-                                    maxWidth: '100%'
-                                }}>
-                                    {tech.name}
-                                </span>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-
-                    {/* Row for Brands and Platforms */}
-                    <motion.div 
-                        ref={gridThreeRef}
-                        className="tech-grid scroll-reveal"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        viewport={{ once: true }}
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(4, 120px)',
-                            gap: '20px',
-                            justifyContent: 'center',
-                            width: '100%'
-                        }}
-                    >
-                        {brandsAndPlatforms.map((tech, index) => (
-                            <motion.div 
-                                key={index}
-                                className="tech-card"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-                                viewport={{ once: true, amount: 0.1 }}
-                                whileHover={{ 
-                                    y: -5,
-                                    scale: 1.1,
-                                    transition: { duration: 0.2 }
-                                }}
-                                title={tech.name}
-                                style={{
-                                    backgroundColor: 'var(--bg-lighter)',
-                                    borderRadius: '12px',
-                                    padding: '16px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    cursor: 'pointer',
-                                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                                    aspectRatio: '1/1'
-                                }}
-                            >
-                                {React.createElement(tech.icon as React.ElementType, { 
-                                    size: 36,
-                                    color: tech.color
-                                })}
-                                <span style={{ 
-                                    fontSize: '12px', 
-                                    marginTop: '8px', 
-                                    textAlign: 'center',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                    whiteSpace: 'nowrap',
-                                    maxWidth: '100%'
-                                }}>
-                                    {tech.name}
-                                </span>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                            </div>
+                            <div className="tech-card-content">
+                                <h3>{tech.name}</h3>
+                                <p>{tech.description}</p>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>

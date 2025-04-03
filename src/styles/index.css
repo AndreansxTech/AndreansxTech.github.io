@@ -1,6 +1,6 @@
 :root {
-  --bg-primary: #272822;
-  --bg-secondary: #1e1f1c;
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #141414;
   --text-primary: #F8F8F2;
   --text-secondary: #75715E;
   --accent: #66D9EF;
@@ -127,7 +127,7 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: rgba(39, 40, 34, 0.8);
+  background-color: rgba(20, 20, 20, 0.9);
   backdrop-filter: blur(8px);
   padding: 1.5rem 0;
   transition: all 0.3s ease;
@@ -541,7 +541,7 @@ header.scrolled .logo {
 
 /* Efekt blur w tle dla wyskakujących menu */
 .blur-overlay {
-  background: rgba(39, 40, 34, 0.7);
+  background: rgba(20, 20, 20, 0.8); /* Ciemniejszy overlay */
   backdrop-filter: blur(8px);
   position: fixed;
   top: 0;
@@ -604,63 +604,67 @@ button:focus:not(:focus-visible) {
 
 /* Technologies Section */
 .tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   margin-top: 3rem;
 }
 
 .tech-card {
   background-color: var(--bg-secondary);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top: 2px solid var(--highlight-secondary);
+  align-items: flex-start;
+  border-left: 4px solid var(--highlight-secondary);
 }
 
 .tech-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .tech-icon {
   color: var(--highlight-secondary);
-  margin-bottom: 1.5rem;
-  font-size: 2.5rem;
+  margin-right: 2rem;
+  font-size: 3rem;
   padding: 1rem;
-  border-radius: 50%;
+  border-radius: 8px;
   background-color: rgba(174, 129, 255, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 80px;
+  min-width: 100px;
+  height: 100px;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .tech-card:hover .tech-icon {
-  transform: translateY(-5px);
+  transform: scale(1.05);
   color: var(--accent);
   background-color: rgba(102, 217, 239, 0.1);
 }
 
+.tech-card-content {
+  flex: 1;
+}
+
 .tech-card h3 {
-  margin: 1rem 0;
-  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
   color: var(--text-primary);
 }
 
 .tech-card p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   margin-bottom: 0;
+  line-height: 1.6;
 }
 
 /* Technologies Section - Updated icon grid */
@@ -722,6 +726,19 @@ button:focus:not(:focus-visible) {
   }
 }
 
+/* Media queries for tech cards */
+@media (max-width: 768px) {
+  .tech-card {
+    padding: 1.5rem;
+    flex-direction: column;
+  }
+  
+  .tech-icon {
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
 /* Scroll Animation Effects */
 .scroll-reveal {
   opacity: 0;
@@ -748,6 +765,7 @@ button:focus:not(:focus-visible) {
   background-size: cover;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #121212 0%, #1a1a1a 50%, #121212 100%); /* Ciemniejsze tło dla sekcji hero */
 }
 
 /* Reveal effect for projects */
@@ -831,7 +849,7 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #1e1f1c 0%, #272822 50%, #1e1f1c 100%);
+  background: linear-gradient(135deg, #121212 0%, #1a1a1a 50%, #121212 100%);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   transform: translateZ(0);
