@@ -15,7 +15,7 @@ const Technologies: React.FC = () => {
             name: "MikroTik", 
             icon: SiMikrotik, 
             color: "#f5f3f0",
-            description: "Reliable networking solutions that offer great value for money. I love their flexibility in configuration and advanced routing features."
+            description: "Very reliable networking solutions that offer great value for money. I love their flexibility and their powerful RouterOS."
         },
         { 
             name: "Debian", 
@@ -27,13 +27,13 @@ const Technologies: React.FC = () => {
             name: "GitHub", 
             icon: FaGithub, 
             color: "#ffffff",
-            description: "An essential tool for project collaboration and version control. I use it to store all my projects and learn from the community."
+            description: "An essential tool for project collaboration and version control. I use it to store all my projects and document my networking journey."
         },
         { 
             name: "Cloudflare", 
             icon: SiCloudflare, 
             color: "#F48120",
-            description: "A service that ensures website security and performance. I use it to secure my services and accelerate access to them."
+            description: "A service that ensures website security and performance. I use it to host my projects websites and protect them from DDoS attacks."
         }
     ];
 
