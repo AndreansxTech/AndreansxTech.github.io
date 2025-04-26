@@ -106,7 +106,7 @@ const About: React.FC = () => {
                     <h2 className="fade-up">About Me</h2>
                 </motion.div>
                 
-                <div className="about-content">
+                <div className="about-content grid grid-cols-1 md:grid-cols-2 gap-8">
                     <motion.div
                         initial={getInitialLeftProps()}
                         whileInView="visible"
