@@ -5,10 +5,10 @@ import { FaGithub, FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 const Projects: React.FC = () => {
     const projectList = [
         {
-            title: 'My Homelab',
+            title: 'Networking lab',
             description: 'Detailed documentation of my networking lab with configuration scenarios, network diagrams, and technical notes about enterprise-like setups.',
             technologies: ['Networking', 'MikroTik', 'Brocade', 'Documentation'],
-            githubLink: 'https://github.com/AndreansxTech/My-homelab',
+            githubLink: 'https://github.com/AndreansxTech/Networking-lab',
             liveLink: null
         },
         {
